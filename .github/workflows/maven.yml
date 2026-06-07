@@ -20,11 +20,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    # - name: Fix JAVA_HOME on macOS
-    #   if: runner.os == 'macOS'
-    #   run: |
-    #     if [ -d "$JAVA_HOME/Contents/Home" ]; then
-    #       echo "JAVA_HOME=$JAVA_HOME/Contents/Home" >> $GITHUB_ENV
-    #     fi
+    - name: Fix JAVA_HOME on macOS
+      if: runner.os == 'macOS'
+      run: echo "JAVA_HOME=$JAVA_HOME/Contents/Home" >> $GITHUB_ENV
     - name: Build with Maven
       run: mvn clean package -B -V
